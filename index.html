@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام المبيعات المتكامل - تحليل وتصميم</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cash-register"></i>
+                    <h1>نظام المبيعات المتكامل</h1>
+                </div>
+                <nav class="nav">
+                    <a href="offer-proposal.html" class="external-link">عرض المشروع</a>
+                    <a href="#overview">نظرة عامة</a>
+                    <a href="#modules">الوحدات</a>
+                    <a href="#workflow">آلية العمل</a>
+                    <a href="#features">المميزات</a>
+                </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu">
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <nav class="mobile-nav">
+                <a href="offer-proposal.html" class="external-link">عرض المشروع</a>
+                <a href="#overview">نظرة عامة</a>
+                <a href="#modules">الوحدات</a>
+                <a href="#workflow">آلية العمل</a>
+                <a href="#features">المميزات</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>تحليل وتصميم نظام المبيعات المتكامل مع صلاحيات الكاشير</h2>
+                <p>منصة مركزية شاملة لإدارة عمليات البيع والمخزون والعملاء مع فصل المهام وزيادة الرقابة</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-boxes"></i>
+                        <span>إدارة المخزون</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span>إدارة العملاء</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-chart-line"></i>
+                        <span>التقارير والتحليل</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>نظام الصلاحيات</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview">
+        <div class="container">
+            <h2 class="section-title">الفكرة العامة للنظام</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>الفكرة العامة للنظام هي توفير منصة مركزية لإدارة عمليات البيع والمخزون والعملاء، مع فصل المهام بين موظف المبيعات والكاشير لزيادة الرقابة وتقليل الأخطاء وتسهيل عملية تتبع أداء الموظفين.</p>
+                </div>
+                <div class="overview-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-check-circle"></i>
+                        <span>زيادة الرقابة والتحكم</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-check-circle"></i>
+                        <span>تقليل الأخطاء البشرية</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-check-circle"></i>
+                        <span>تتبع أداء الموظفين</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-check-circle"></i>
+                        <span>إدارة مركزية شاملة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules">
+        <div class="container">
+            <h2 class="section-title">المكونات الرئيسية للنظام</h2>
+            <div class="modules-grid">
+                <!-- Module 1: Inventory Management -->
+                <div class="module-card" data-module="inventory">
+                    <div class="module-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>إدارة المخزون والمنتجات</h3>
+                    <p>قاعدة النظام لتعريف وإدارة جميع المنتجات</p>
+                    <div class="module-features">
+                        <div class="feature">
+                            <i class="fas fa-search"></i>
+                            <span>البحث المتقدم (باركود، اسم، لون، حجم)</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-image"></i>
+                            <span>صور المنتجات</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-file-excel"></i>
+                            <span>تغذية البيانات عبر Excel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2: POS -->
+                <div class="module-card" data-module="pos">
+                    <div class="module-icon">
+                        <i class="fas fa-cash-register"></i>
+                    </div>
+                    <h3>نقطة البيع (POS)</h3>
+                    <p>واجهة موظف المبيعات والكاشير</p>
+                    <div class="module-features">
+                        <div class="feature">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>إنشاء سلة المبيعات</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-calculator"></i>
+                            <span>حاسبة الخصم المرن (5%-10%)</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-double"></i>
+                            <span>نظام الموافقة المزدوجة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Users & Permissions -->
+                <div class="module-card" data-module="users">
+                    <div class="module-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>إدارة المستخدمين والصلاحيات</h3>
+                    <p>التحكم في صلاحيات وأدوار المستخدمين</p>
+                    <div class="module-features">
+                        <div class="feature">
+                            <i class="fas fa-user-shield"></i>
+                            <span>مدير النظام</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-tie"></i>
+                            <span>موظف المبيعات</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-cash-register"></i>
+                            <span>الكاشير</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4: CRM -->
+                <div class="module-card" data-module="crm">
+                    <div class="module-icon">
+                        <i class="fas fa-address-book"></i>
+                    </div>
+                    <h3>إدارة العملاء (CRM)</h3>
+                    <p>بناء قاعدة بيانات العملاء للتسويق</p>
+                    <div class="module-features">
+                        <div class="feature">
+                            <i class="fas fa-phone"></i>
+                            <span>رقم الهاتف كمعرف أساسي</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-plus"></i>
+                            <span>بيانات شخصية شاملة</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-link"></i>
+                            <span>ربط المبيعات بالعميل</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5: Reports -->
+                <div class="module-card" data-module="reports">
+                    <div class="module-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>التقارير والتحليلات</h3>
+                    <p>رؤية شاملة عن أداء العمل</p>
+                    <div class="module-features">
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>تقارير المبيعات</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-chart"></i>
+                            <span>أداء الموظفين</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-boxes"></i>
+                            <span>تقارير المخزون</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6: Returns -->
+                <div class="module-card" data-module="returns">
+                    <div class="module-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>إدارة المرتجعات</h3>
+                    <p>نظام متكامل لإدارة عمليات الإرجاع</p>
+                    <div class="module-features">
+                        <div class="feature">
+                            <i class="fas fa-receipt"></i>
+                            <span>البحث في الفواتير الأصلية</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-box-open"></i>
+                            <span>إعادة الكمية للمخزن</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-tag"></i>
+                            <span>تحديد البائع الأصلي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <h2 class="section-title">آلية العمل المقترحة لعملية البيع</h2>
+            <div class="workflow-timeline">
+                <div class="timeline-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>البداية (موظف المبيعات)</h4>
+                        <p>تسجيل الدخول للنظام</p>
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>إضافة المنتجات</h4>
+                        <p>إضافة المنتجات للسلة عبر مسح الباركود أو البحث</p>
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>إضافة العميل</h4>
+                        <p>البحث عن العميل أو إضافة عميل جديد</p>
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>إرسال الطلب</h4>
+                        <p>إرسال السلة إلكترونياً إلى الكاشير</p>
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>المراجعة (الكاشير)</h4>
+                        <p>مراجعة الطلب من قائمة الطلبات المعلقة</p>
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>التعديل (إذا لزم الأمر)</h4>
+                        <p>تعديل الكمية أو تطبيق الخصم المرن</p>
+                        <i class="fas fa-edit"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h4>التأكيد والدفع</h4>
+                        <p>تأكيد البيع بعد استلام المبلغ</p>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <h4>النهاية (النظام)</h4>
+                        <p>خصم الكميات وتسجيل الفاتورة وطباعتها</p>
+                        <i class="fas fa-print"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">المميزات الخاصة</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>حاسبة الخصم المرن</h3>
+                    <p>أداة تسمح للكاشير بتطبيق خصم مرن (5% - 10%) على منتجات محددة مع حساب فوري للسعر الجديد</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3>تحديث الكميات Overwrite</h3>
+                    <p>ملف Excel منفصل لتحديث كميات المخزون بنظام الاستبدال الكامل للجرد والتحديث</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>رفع الصور </h3>
+                    <p>رفع صور المنتجات بشكل  مع ربط تلقائي باستخدام رمز المنتج (SKU)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>المنتجات متعددة الخصائص</h3>
+                    <p>دعم المنتجات التي لها ألوان وأحجام مختلفة مع باركود منفصل لكل خاصية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>نظام المبيعات المتكامل</h4>
+                    <p>حل شامل لإدارة المبيعات والمخزون مع أنظمة رقابة متطورة</p>
+                </div>
+                <div class="footer-section">
+                    <h4>الوحدات الرئيسية</h4>
+                    <ul>
+                        <li>إدارة المخزون</li>
+                        <li>نقطة البيع</li>
+                        <li>إدارة العملاء</li>
+                        <li>التقارير والتحليل</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>المميزات المتقدمة</h4>
+                    <ul>
+                        <li>نظام الصلاحيات</li>
+                        <li>الخصومات المرنة</li>
+                        <li>إدارة المرتجعات</li>
+                        <li>تتبع الأداء</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 نظام المبيعات المتكامل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Module Details Modal -->
+    <div id="moduleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
