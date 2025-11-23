@@ -12,7 +12,442 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Update 2 specific styles to match theme */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo i {
+            font-size: 2rem;
+            color: #667eea;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        .nav a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #4a5568;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+        #mobileNav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #mobileNav.active {
+            display: flex;
+            opacity: 1;
+        }
+        .mobile-menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 280px;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        #mobileNav.active .mobile-menu {
+            transform: translateX(0);
+        }
+        .mobile-menu-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 20px;
+            color: #4a5568;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu-close:hover {
+            color: #667eea;
+        }
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+        .mobile-nav a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+        .mobile-nav a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+        .mobile-nav a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Hero-like section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .tab-btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .tab-btn-outline:hover, .tab-btn-outline.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Tab content - removed custom implementation */
+
+        /* Bootstrap Tabs Customization */
+        .nav-tabs {
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .nav-tabs .nav-link {
+            border: none;
+            color: white;
+            background: transparent;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+            margin: 0 2px;
+        }
+        .nav-tabs .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .nav-tabs .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .nav-tabs .nav-link i {
+            margin-left: 8px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #2d3748;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Overview sections */
+        .overview {
+            background: white;
+        }
+        .overview-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .overview-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+        .overview-text ul {
+            margin-bottom: 20px;
+        }
+        .overview-text li {
+            margin-bottom: 10px;
+        }
+        .overview-text strong {
+            color: #2d3748;
+        }
+        pre {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .overview-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-section {
+                padding: 120px 0 30px;
+            }
+            .hero-section h2 {
+                font-size: 1.8rem;
+            }
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Excel-like table styles */
+        .excel-table {
+            border-collapse: collapse;
+            border: 2px solid #000;
+            background-color: #fff;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+        }
+        .excel-table th {
+            background-color: #e6e6e6;
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: #000;
+        }
+        .excel-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        .excel-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .excel-table tbody tr:hover {
+            background-color: #ffff99;
+        }
+
+        /* Pricing section styles */
+        .pricing-section {
+            text-align: center;
+        }
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        .card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            width: 300px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .price {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin: 20px 0;
+        }
+        .card-title {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        .card-text {
+            color: #4a5568;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -34,169 +469,179 @@
         </div>
     </header>
 
-    <section class="hero">
+    <div id="mobileNav">
+        <div class="mobile-menu">
+            <button class="mobile-menu-close" id="mobileCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <nav class="mobile-nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="offer-proposal.html">عرض المشروع</a>
+                <a href="update-2.html" class="active">تحديث 2</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
         <div class="container">
-            <div class="hero-content">
-                <h2>تحديث 2 - تحسينات وتجديدات</h2>
-                <p>هذا التحديث يضيف تحسينات على واجهة المستخدم، تحسينات الأداء، واختيارات جديدة لإدارة المخزون.</p>
-            </div>
+            <h2>تحديث 2 — تحسينات عملية وأدوات جديدة</h2>
+            <p>سوف تتضمن هذه النسخة أدوات لإدارة الملاحظات، رفع المنتجات التالفة وتعيين مواقع المنتجات داخل المتجر — كل ذلك مع واجهة أبسط وتجربة أسرع للموظفين والعملاء.</p>
+
+            <!-- Bootstrap Tabs Navigation -->
+            <ul class="nav nav-tabs justify-content-center" id="featureTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="true">
+                        <i class="fas fa-sticky-note me-2"></i>تحديث الملاحظات
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="broken-products-tab" data-bs-toggle="tab" data-bs-target="#broken-products" type="button" role="tab" aria-controls="broken-products" aria-selected="false">
+                        <i class="fas fa-exclamation-triangle me-2"></i>رفع ملف التالفة
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="store-location-tab" data-bs-toggle="tab" data-bs-target="#store-location" type="button" role="tab" aria-controls="store-location" aria-selected="false">
+                        <i class="fas fa-map-marker-alt me-2"></i>رفع موقع المنتجات
+                    </button>
+                </li>
+            </ul>
         </div>
     </section>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="featureTabsContent">
+        <!-- Add Notes Feature -->
+        <div class="tab-pane fade show active" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+            <section class="overview">
+                <div class="container">
+                    <h2 class="section-title">إضافة ملاحظات (Notes)</h2>
+                    <div class="overview-content">
+                        <div class="overview-text">
+                            <p>سوف نضيف ميزة "الملاحظات" التي ستسمح للموظفين بإضافة ملاحظات بسيطة مرتبطة بالعملاء أو العمليات العامة.</p>
+                            <ul>
+                                <li>الحقل الأول (اختياري): <strong>العميل</strong> - البحث برقم العميل أو إضافة عميل جديد.</li>
+                                <li>الحقل الثاني: <strong>نص الملاحظة</strong> - حقل نصي لكتابة الملاحظة.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+                        <!-- Broken Products Upload -->
+                        <div class="tab-pane fade" id="broken-products" role="tabpanel" aria-labelledby="broken-products-tab">
+                            <section class="overview">
+                                <div class="container">
+                                    <h2 class="section-title">السلعة التالفة (Broken Product)</h2>
+                                    <div class="overview-content">
+                                        <div class="overview-text">
+                                            <p>سوف نضيف ميزة رفع ملف Excel/CSV لإدارة السلع التالفة (التالف). سيتم معالجة الملف وتطبيق تحديث كميات التالف على المنتجات المطابقة بحسب النموذج.</p>
+                                            <p>تنسيق الملف المطلوب (أو CSV):</p>
+                                            <table class="excel-table" dir="ltr">
+                                                <thead>
+                                                    <tr>
+                                                        <th>model</th>
+                                                        <th>style</th>
+                                                        <th>size</th>
+                                                        <th>quantity</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>MDL-001</td>
+                                                        <td>Classic</td>
+                                                        <td>45</td>
+                                                        <td>3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MDL-002</td>
+                                                        <td>Modern</td>
+                                                        <td>42</td>
+                                                        <td>1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MDL-010</td>
+                                                        <td>Classic</td>
+                                                        <td>44</td>
+                                                        <td>2</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p>شرح الحقول:</p>
+                                            <ul>
+                                                <li><strong>model</strong> = رمز الطراز أو كود</li>
+                                                <li><strong>style</strong> = لون</li>
+                                                <li><strong>size</strong> = قياسات المنتج</li>
+                                                <li><strong>quantity</strong> = عدد الوحدات التالف</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>        <!-- Store Location Upload -->
+        <div class="tab-pane fade" id="store-location" role="tabpanel" aria-labelledby="store-location-tab">
+            <section class="overview">
+                <div class="container">
+                    <h2 class="section-title">موقع المتجر (Store Location)</h2>
+                    <div class="overview-content">
+                        <div class="overview-text">
+                            <p>سوف نضيف إمكانية رفع ملف لتعيين مواقع المنتجات داخل المتجر أو المخزن، بحيث يمكن عرض هذه المعلومات عند البحث عن المنتج. يمكن أن يساعد هذا في تقليل وقت البحث وتحسين تجربة الموظف والعميل.</p>
+                            <p>تنسيق الملف المطلوب (أو CSV):</p>
+                            <table class="excel-table" dir="ltr">
+                                <thead>
+                                    <tr>
+                                        <th>model</th>
+                                        <th>style</th>
+                                        <th>location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MDL-001</td>
+                                        <td>Classic</td>
+                                        <td>Aisle 3 - Shelf B</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MDL-002</td>
+                                        <td>Modern</td>
+                                        <td>Back Room - Shelf 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MDL-010</td>
+                                        <td>Classic</td>
+                                        <td>Front Display - Rack 2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>التحقق: سيتم عرض التطابقات بناءً على (model, style) ويتيح للمستخدم مراجعة وتأكيد تعيين الموقع قبل حفظه.</p>
+                            <!-- <p><a class="btn btn-outline" href="#">رفع موقع المنتجات</a></p> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 
     <section class="overview">
         <div class="container">
-            <h2 class="section-title">ملخص التحديث</h2>
-            <div class="overview-content">
-                <div class="overview-text">
-                    <p>يتضمن "تحديث 2" التحسينات التالية:</p>
-                    <ul>
-                        <li>تحسين واجهة المستخدم لسهولة الفهم وسرعة الأداء.</li>
-                        <li>إضافة تقارير مفصّلة أكثر مع تصفية حسب التاريخ والمستخدم.</li>
-                        <li>تحسينات في عمليات الـ CRUD للمخزون وتقليل زمن الاستجابة.</li>
-                        <li>خيارات استيراد وتصدير محسّنة عبر ملفات CSV/Excel.</li>
-                    </ul>
-                    <p>سيسمح التحديث للمؤسسات بإدارة المخزون بشكل أكثر دقة وتحسين تجربة المستخدم النهائية.</p>
-                </div>
-                <div class="overview-benefits">
-                    <div class="benefit">
-                        <i class="fas fa-rocket"></i>
-                        <span>أداء أسرع</span>
+            <h2 class="section-title">التكلفة</h2>
+            <div class="pricing-section">
+                <div class="pricing-cards">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-rocket fa-3x mb-3" style="color: #667eea;"></i>
+                            <h5 class="card-title">التطوير السريع</h5>
+                            <h2 class="price">$400</h2>
+                        </div>
                     </div>
-                    <div class="benefit">
-                        <i class="fas fa-user-check"></i>
-                        <span>واجهة محسنة</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-file-csv"></i>
-                        <span>أفضل دعم CSV/Excel</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-chart-line"></i>
-                        <span>تقارير تفصيلية</span>
-                    </div>
-                </div>
-            </div>
-
-            <p style="margin-top: 30px;">لمعرفة كيفية تفعيل التحديث أو لطلب المساعدة، تواصل معنا عبر البريد الإلكتروني أو ملفات الدعم.</p>
-
-            <a class="cta-button" href="mailto:dev@micodev.com?subject=طلب%20تفعيل%20تحديث%202">طلب تفعيل التحديث</a>
-        </div>
-    </section>
-
-    <!-- Update 2 - Table of Contents -->
-    <section class="overview" style="margin-top: 30px; background: #fff;">
-        <div class="container">
-            <h2 class="section-title">محتويات التحديث</h2>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                <a href="#notes" style="text-decoration:none; background: #f7fafc; padding:10px 14px; border-radius:8px; color:#2d3748;">1. إضافة ملاحظات</a>
-                <a href="#broken-products" style="text-decoration:none; background: #f7fafc; padding:10px 14px; border-radius:8px; color:#2d3748;">2. السلعة التالفة (التالف)</a>
-                <a href="#store-location" style="text-decoration:none; background: #f7fafc; padding:10px 14px; border-radius:8px; color:#2d3748;">3. موقع المتجر</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Add Notes Feature -->
-    <section id="notes" class="overview" style="background: #fff; margin-top: 20px;">
-        <div class="container">
-            <h2 class="section-title">إضافة ملاحظات (Notes)</h2>
-            <div class="overview-content">
-                <div class="overview-text">
-                    <p>تم إضافة ميزة "الملاحظات" التي تسمح للموظفين بإضافة ملاحظات مرتبطة بعملية الشراء أو العميل أو المنتج. يمكن استخدام الملاحظات لتوثيق ملاحظات داخلية أو ملاحظات مرئية للعميل.</p>
-                    <ul>
-                        <li>الحقول الأساسية: <strong>المؤلف (الموظف)</strong>، <strong>التاريخ/الوقت</strong>، <strong>نص الملاحظة</strong>، <strong>مرتبط بالمنتج/البيع/العميل</strong>.</li>
-                        <li>خيار لتمييز الملاحظة كـ "داخلية" (لا يراها العميل) أو "مشاركة" (تكون مرئية للعميل).</li>
-                        <li>عرض الملاحظات في صفحة المنتج، شاشة المبيعات، وتفاصيل العميل.</li>
-                    </ul>
-                    <p>استخدامات شائعة مثال:</p>
-                    <ul>
-                        <li>ملاحظة بخصوص حالة المنتج بعد الفحص (مثلاً: "الخدش طفيف" أو "يحتاج إعادة تغليف").</li>
-                        <li>مذكرات خدمة العملاء (مثلاً: "عميل يخبرنا أنه يريد توصيلًا لاحقًا").</li>
-                        <li>توثيق تغييرات يدوية في الفاتورة أو السياسات المطبقة.</li>
-                    </ul>
-                </div>
-                <div class="overview-benefits">
-                    <div class="benefit">
-                        <i class="fas fa-sticky-note"></i>
-                        <span>توثيق سريع</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-user-edit"></i>
-                        <span>تتبع الموظف</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-eye"></i>
-                        <span>تحكم في مستوى الرؤية</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Broken Products Upload -->
-    <section id="broken-products" class="overview" style="background: #fff; margin-top: 20px;">
-        <div class="container">
-            <h2 class="section-title">السلعة التالفة (Broken Product)</h2>
-            <div class="overview-content">
-                <div class="overview-text">
-                    <p>أضفنا ميزة رفع ملف Excel/CSV لإدارة السلع التالفة (التالف). يقوم النظام بمعالجة الملف وتطبيق تحديث كميات التالف على المنتجات المطابقة بحسب النموذج.</p>
-                    <p>تنسيق الملف المطلوب (أو CSV):</p>
-                    <pre style="background:#f2f6ff;padding:10px;border-radius:8px;">model,style,size,quantity
-MDL-001,Classic,45,3
-MDL-002,Modern,42,1
-MDL-010,Classic,44,2</pre>
-                    <p>شرح الحقول:</p>
-                    <ul>
-                        <li><strong>model</strong> = رمز الطراز أو SKU</li>
-                        <li><strong>style</strong> = تصميم/نسخة المنتج</li>
-                        <li><strong>size</strong> = الحجم/قياسات المنتج</li>
-                        <li><strong>quantity</strong> = عدد الوحدات التالفة</li>
-                    </ul>
-                    <p>التحقق سيتم كالتالي: البحث عن المنتج في النظام باستخدام (model, style, size) ومبدئياً عرض قائمة التطابقات، ثم تأكيد الإجراء لتخفيض الكمية ووسمها كـ "تالف".</p>
-                </div>
-                <div class="overview-benefits">
-                    <div class="benefit">
-                        <i class="fas fa-file-excel"></i>
-                        <span>رفع ملف CSV/Excel</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>معالجة التالف</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-list-alt"></i>
-                        <span>ملخص بعد المعالجة</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Store Location Upload -->
-    <section id="store-location" class="overview" style="background: #fff; margin-top: 20px;">
-        <div class="container">
-            <h2 class="section-title">موقع المتجر (Store Location)</h2>
-            <div class="overview-content">
-                <div class="overview-text">
-                    <p>أضفنا إمكانية رفع ملف لتعيين مواقع المنتجات داخل المتجر أو المخزن، بحيث يمكن عرض هذه المعلومات عند البحث عن المنتج. يمكن أن يساعد هذا في تقليل وقت البحث وتحسين تجربة الموظف والعميل.</p>
-                    <p>تنسيق الملف المطلوب (أو CSV):</p>
-                    <pre style="background:#f2f6ff;padding:10px;border-radius:8px;">model,style,location
-MDL-001,Classic,Aisle 3 - Shelf B
-MDL-002,Modern,Back Room - Shelf 1
-MDL-010,Classic,Front Display - Rack 2</pre>
-                    <p>التحقق: يعرض النظام التطابقات بناءً على (model, style) ويتيح للمستخدم مراجعة وتأكيد تعيين الموقع قبل حفظه.</p>
-                </div>
-                <div class="overview-benefits">
-                    <div class="benefit">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>تحديد موقع سريع</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-search"></i>
-                        <span>عرض الموقع في نتائج البحث</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>تصدير واستيراد محدث</span>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-calendar-alt fa-3x mb-3" style="color: #764ba2;"></i>
+                            <h5 class="card-title">ايام تطوير عادية</h5>
+                            <h2 class="price">$300</h2>
+                           
+                        </div>
                     </div>
                 </div>
             </div>
@@ -212,5 +657,29 @@ MDL-010,Classic,Front Display - Rack 2</pre>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function(){
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+            if(mobileMenuBtn && mobileNav){
+                mobileMenuBtn.addEventListener('click', function(){
+                    mobileNav.classList.add('active');
+                });
+            }
+            if(mobileCloseBtn && mobileNav){
+                mobileCloseBtn.addEventListener('click', function(){
+                    mobileNav.classList.remove('active');
+                });
+            }
+            document.addEventListener('keydown', function(e){
+                if(e.key === 'Escape' && mobileNav && mobileNav.classList.contains('active')){
+                    mobileNav.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
