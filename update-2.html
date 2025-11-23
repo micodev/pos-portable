@@ -83,6 +83,126 @@
         </div>
     </section>
 
+    <!-- Update 2 - Table of Contents -->
+    <section class="overview" style="margin-top: 30px; background: #fff;">
+        <div class="container">
+            <h2 class="section-title">محتويات التحديث</h2>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="#notes" style="text-decoration:none; background: #f7fafc; padding:10px 14px; border-radius:8px; color:#2d3748;">1. إضافة ملاحظات</a>
+                <a href="#broken-products" style="text-decoration:none; background: #f7fafc; padding:10px 14px; border-radius:8px; color:#2d3748;">2. السلعة التالفة (التالف)</a>
+                <a href="#store-location" style="text-decoration:none; background: #f7fafc; padding:10px 14px; border-radius:8px; color:#2d3748;">3. موقع المتجر</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Notes Feature -->
+    <section id="notes" class="overview" style="background: #fff; margin-top: 20px;">
+        <div class="container">
+            <h2 class="section-title">إضافة ملاحظات (Notes)</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>تم إضافة ميزة "الملاحظات" التي تسمح للموظفين بإضافة ملاحظات مرتبطة بعملية الشراء أو العميل أو المنتج. يمكن استخدام الملاحظات لتوثيق ملاحظات داخلية أو ملاحظات مرئية للعميل.</p>
+                    <ul>
+                        <li>الحقول الأساسية: <strong>المؤلف (الموظف)</strong>، <strong>التاريخ/الوقت</strong>، <strong>نص الملاحظة</strong>، <strong>مرتبط بالمنتج/البيع/العميل</strong>.</li>
+                        <li>خيار لتمييز الملاحظة كـ "داخلية" (لا يراها العميل) أو "مشاركة" (تكون مرئية للعميل).</li>
+                        <li>عرض الملاحظات في صفحة المنتج، شاشة المبيعات، وتفاصيل العميل.</li>
+                    </ul>
+                    <p>استخدامات شائعة مثال:</p>
+                    <ul>
+                        <li>ملاحظة بخصوص حالة المنتج بعد الفحص (مثلاً: "الخدش طفيف" أو "يحتاج إعادة تغليف").</li>
+                        <li>مذكرات خدمة العملاء (مثلاً: "عميل يخبرنا أنه يريد توصيلًا لاحقًا").</li>
+                        <li>توثيق تغييرات يدوية في الفاتورة أو السياسات المطبقة.</li>
+                    </ul>
+                </div>
+                <div class="overview-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-sticky-note"></i>
+                        <span>توثيق سريع</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-user-edit"></i>
+                        <span>تتبع الموظف</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-eye"></i>
+                        <span>تحكم في مستوى الرؤية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Broken Products Upload -->
+    <section id="broken-products" class="overview" style="background: #fff; margin-top: 20px;">
+        <div class="container">
+            <h2 class="section-title">السلعة التالفة (Broken Product)</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>أضفنا ميزة رفع ملف Excel/CSV لإدارة السلع التالفة (التالف). يقوم النظام بمعالجة الملف وتطبيق تحديث كميات التالف على المنتجات المطابقة بحسب النموذج.</p>
+                    <p>تنسيق الملف المطلوب (أو CSV):</p>
+                    <pre style="background:#f2f6ff;padding:10px;border-radius:8px;">model,style,size,quantity
+MDL-001,Classic,45,3
+MDL-002,Modern,42,1
+MDL-010,Classic,44,2</pre>
+                    <p>شرح الحقول:</p>
+                    <ul>
+                        <li><strong>model</strong> = رمز الطراز أو SKU</li>
+                        <li><strong>style</strong> = تصميم/نسخة المنتج</li>
+                        <li><strong>size</strong> = الحجم/قياسات المنتج</li>
+                        <li><strong>quantity</strong> = عدد الوحدات التالفة</li>
+                    </ul>
+                    <p>التحقق سيتم كالتالي: البحث عن المنتج في النظام باستخدام (model, style, size) ومبدئياً عرض قائمة التطابقات، ثم تأكيد الإجراء لتخفيض الكمية ووسمها كـ "تالف".</p>
+                </div>
+                <div class="overview-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-file-excel"></i>
+                        <span>رفع ملف CSV/Excel</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>معالجة التالف</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-list-alt"></i>
+                        <span>ملخص بعد المعالجة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Location Upload -->
+    <section id="store-location" class="overview" style="background: #fff; margin-top: 20px;">
+        <div class="container">
+            <h2 class="section-title">موقع المتجر (Store Location)</h2>
+            <div class="overview-content">
+                <div class="overview-text">
+                    <p>أضفنا إمكانية رفع ملف لتعيين مواقع المنتجات داخل المتجر أو المخزن، بحيث يمكن عرض هذه المعلومات عند البحث عن المنتج. يمكن أن يساعد هذا في تقليل وقت البحث وتحسين تجربة الموظف والعميل.</p>
+                    <p>تنسيق الملف المطلوب (أو CSV):</p>
+                    <pre style="background:#f2f6ff;padding:10px;border-radius:8px;">model,style,location
+MDL-001,Classic,Aisle 3 - Shelf B
+MDL-002,Modern,Back Room - Shelf 1
+MDL-010,Classic,Front Display - Rack 2</pre>
+                    <p>التحقق: يعرض النظام التطابقات بناءً على (model, style) ويتيح للمستخدم مراجعة وتأكيد تعيين الموقع قبل حفظه.</p>
+                </div>
+                <div class="overview-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>تحديد موقع سريع</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-search"></i>
+                        <span>عرض الموقع في نتائج البحث</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>تصدير واستيراد محدث</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-bottom">
