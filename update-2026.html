@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديث 2026 - نظام المبيعات المتكامل</title>
+    <meta name="description" content="تحديث 2026 الشامل لنظام نقطة البيع المتكامل — إضافات خاصة، تحسينات وظيفية، إصلاحات برمجية، وتحسينات واجهة المستخدم.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="تحديث 2026 - نظام المبيعات المتكامل">
+    <meta property="og:description" content="تحديث 2026 الشامل — إضافات خاصة، تحسينات وظيفية، إصلاحات برمجية، وتحسينات واجهة المستخدم.">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Update 2026 specific styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .site-content {
+            flex: 1; /* grow to push footer to bottom */
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo i {
+            font-size: 2rem;
+            color: #667eea;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        .nav a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #4a5568;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+        #mobileNav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #mobileNav.active {
+            display: flex;
+            opacity: 1;
+        }
+        .mobile-menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 280px;
+            background: white;
+            box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        #mobileNav.active .mobile-menu {
+            transform: translateX(0);
+        }
+        .mobile-menu-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 20px;
+            color: #4a5568;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu-close:hover {
+            color: #667eea;
+        }
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+        .mobile-nav a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+        .mobile-nav a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+        .mobile-nav a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Hero-like section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Bootstrap Tabs Customization */
+        .nav-tabs {
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 8px;
+            backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-tabs .nav-link {
+            border: none;
+            color: white;
+            background: transparent;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+            margin: 5px 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-tabs .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .nav-tabs .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #2d3748;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Overview sections */
+        .overview {
+            background: white;
+        }
+        .overview-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .overview-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+        .overview-text ul {
+            margin-bottom: 20px;
+            padding-right: 20px;
+        }
+        .overview-text li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+        .overview-text strong {
+            color: #2d3748;
+        }
+        .feature-number {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-inline-start: 15px;
+        }
+        .feature-item {
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-inline-end: 4px solid #667eea;
+        }
+        .feature-item h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .feature-item p {
+            color: #4a5568;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Features Grid (replaces tabs) */
+        .features-grid {
+            background: transparent;
+            padding: 40px 0 20px;
+        }
+        .features-grid .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+        .feature-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 10px 30px rgba(34, 51, 80, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+            border-left: 6px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+            border-left-color: rgba(102, 126, 234, 0.9);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.18);
+        }
+        .feature-card .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            /* spacing handled by gap on the heading for RTL/LTR consistency */
+        }
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 12px; /* logical spacing between icon and text */
+        }
+        .feature-card p.lead {
+            color: #4a5568;
+            margin-bottom: 12px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .feature-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eef2f7;
+            color: #4a5568;
+            padding-inline-start: 26px;
+            position: relative;
+        }
+        .feature-card ul li::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 2px;
+        }
+        @media (max-width: 1024px) {
+            .features-grid .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .features-grid .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        pre {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+        }
+
+        /* Category badge */
+        .category-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* Pricing Section Styles */
+        .pricing-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .pricing-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        .pricing-title {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .pricing-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        .pricing-cards-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 60px;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        }
+        .pricing-card.featured {
+            border: 3px solid #f0ad4e;
+            box-shadow: 0 25px 80px rgba(240, 173, 78, 0.4);
+        }
+        .pricing-card.featured::before {
+            content: 'العرض الأفضل';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f0ad4e, #ff9800);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(240, 173, 78, 0.5);
+        }
+        .pricing-card h3 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .pricing-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #667eea;
+            margin: 20px 0;
+            line-height: 1;
+        }
+        .pricing-original {
+            font-size: 1.3rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 15px;
+        }
+        .pricing-description {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 25px 0;
+        }
+        .pricing-highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #667eea;
+        }
+        .pricing-highlight strong {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+        .pricing-features {
+            text-align: right; /* RTL-friendly */
+            margin: 25px 0;
+        }
+        .pricing-features li {
+            color: #4a5568;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            list-style: none;
+            padding-inline-start: 30px;
+            position: relative;
+        }
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            inset-inline-start: 0;
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        .pricing-cta {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            width: 100%;
+        }
+        .pricing-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        .pricing-offer-note {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .overview-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .pricing-cards-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-section {
+                padding: 120px 0 30px;
+            }
+            .hero-section h2 {
+                font-size: 1.8rem;
+            }
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            .nav-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .pricing-title {
+                font-size: 2rem;
+            }
+            .pricing-subtitle {
+                font-size: 1.1rem;
+            }
+            .pricing-value {
+                font-size: 2.8rem;
+            }
+            .pricing-card {
+                padding: 25px;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .nav-tabs .nav-link {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .pricing-title {
+                font-size: 1.6rem;
+            }
+            .pricing-value {
+                font-size: 2.2rem;
+            }
+            .pricing-card h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <h1>تحديث 2026</h1>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">الرئيسية</a>
+                    <a href="offer-proposal.html">عرض المشروع</a>
+                    <a href="update-2.html">تحديث 2</a>
+                    <a href="update-2026.html" class="active">تحديث 2026</a>
+                </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobileNav">
+        <div class="mobile-menu">
+            <button class="mobile-menu-close" id="mobileCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <nav class="mobile-nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="offer-proposal.html">عرض المشروع</a>
+                <a href="update-2.html">تحديث 2</a>
+                <a href="update-2026.html" class="active">تحديث 2026</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main class="site-content">
+    <section class="hero-section">
+        <div class="container">
+            <h2>تحديث 2026 — نقلة نوعية في إدارة المبيعات</h2>
+            <p>تحديث شامل يشمل إضافات خاصة (مجانية)، تحسينات وظيفية، إصلاحات برمجية، وتحسينات واجهة المستخدم لتعزيز الإنتاجية والكفاءة</p>
+
+            
+        </div>
+    </section>
+
+    <!-- Features Grid (all visible at once) -->
+    <section class="features-grid">
+        <div class="container">
+            <div class="grid">
+                <!-- Card 1: Additions -->
+                <article class="feature-card">
+                    <h3><span class="icon" style="background: linear-gradient(45deg,#667eea,#764ba2);"><i class="fas fa-mobile-alt"></i></span> إضافات خاصة (مجانية)</h3>
+                    <p class="lead">نقل لوحة تحكم المسؤول وتشغيلها على الهاتف مع كامل الصلاحيات وتجربة محسّنة.</p>
+                    <ul>
+                        <li>إدارة كاملة من الهاتف</li>
+                        <li>جميع الصلاحيات متاحة على الموبايل</li>
+                        <li>واجهة محسّنة للشاشات الصغيرة</li>
+                        <li>تزامن فوري مع النسخة الويب</li>
+                    </ul>
+                </article>
+
+                <!-- Card 2: Improvements -->
+                <article class="feature-card">
+                    <h3><span class="icon" style="background: linear-gradient(45deg,#48c6ef,#6f86d6);"><i class="fas fa-chart-line"></i></span> التحسينات المنطقية والوظيفية</h3>
+                    <p class="lead">وظائف جديدة ومحسّنة لتسهيل العمليات وتسريع العمل اليومي.</p>
+                    <ul>
+                        <li>رفع الصور للكاشير (منتجات/فواتير)</li>
+                        <li>حقل مصدر البيع الإلزامي (معرض، انستغرام، فيسبوك، تليجرام)</li>
+                        <li>تنبيه Customer Target عند 1,450,000 ومضاعفاتها</li>
+                        <li>تحسينات البحث (سريع أثناء الفوترة + بحث متقدم للكاشير والآدمن)</li>
+                    </ul>
+                </article>
+
+                <!-- Card 3: Bug Fixes -->
+                <article class="feature-card">
+                    <h3><span class="icon" style="background: linear-gradient(45deg,#ff7e5f,#feb47b);"><i class="fas fa-tools"></i></span> إصلاحات برمجية</h3>
+                    <p class="lead">إصلاح مشاكل iOS ومجموعة من الإصلاحات العامة لثبات التطبيق.</p>
+                    <ul>
+                        <li>حل Crash عند مسح القطعة الأولى في الإرجاع (iOS)</li>
+                        <li>إصلاح وصول الإشعارات</li>
+                        <li>إصلاح تصدير الملفات (Download)</li>
+                        <li>إصلاحات: حقل البحث في الإرجاع، زر "الموافقة المباشرة"، أسبقية ضغط الأزرار</li>
+                    </ul>
+                </article>
+
+                <!-- Card 4: UI/UX -->
+                <article class="feature-card">
+                    <h3><span class="icon" style="background: linear-gradient(45deg,#76b852,#8DC26F);"><i class="fas fa-palette"></i></span> تحسينات الواجهة (UI/UX)</h3>
+                    <p class="lead">تحسين تجربة الاستخدام ودقة عرض البيانات والصور.</p>
+                    <ul>
+                        <li>اعتماد عدسة الكاميرا العادية لصور أكثر دقة</li>
+                        <li>إخفاء خيار "لا تالف" لتبسيط الواجهة</li>
+                        <li>تنسيق الأرقام مع فواصل وآلية عرض IQD</li>
+                        <li>عرض اسم ورقم الزبون بوضوح داخل الواجهات</li>
+                        <li>استبدال فلتر "الألوان" بفلتر "النوع"</li>
+                    </ul>
+                </article>
+
+                <!-- Card 5: Permissions -->
+                <article class="feature-card">
+                    <h3><span class="icon" style="background: linear-gradient(45deg,#f7971e,#ffd200);"><i class="fas fa-lock"></i></span> الإدارة والصلاحيات</h3>
+                    <p class="lead">تحسينات على نظام الصلاحيات وسجلات الإدارة.</p>
+                    <ul>
+                        <li>صلاحية Store Manager: كاشير + إحصائيات + مهام</li>
+                        <li>تحسين نظام الإرجاع: فلترة بالباركود + تسعير يدوي/تلقائي</li>
+                        <li>التحكم بالملاحظات لمنشئ الملاحظة فقط</li>
+                        <li>أرشفة سجل الإشعارات وتتبع مُضيف الزبون</li>
+                    </ul>
+                </article>
+
+                <!-- Card 6: Reports -->
+                <article class="feature-card">
+                    <h3><span class="icon" style="background: linear-gradient(45deg,#667eea,#764ba2);"><i class="fas fa-file-alt"></i></span> التقارير والإحصائيات</h3>
+                    <p class="lead">تقارير جديدة تساعد القرار الإداري والتحليلي.</p>
+                    <ul>
+                        <li>ترتيب المستخدمين حسب إجمالي الفواتير الكاملة</li>
+                        <li>تقرير الطلبات التفصيلي: الفرع، المصدر، المبلغ، العدد</li>
+                        <li>فلاتر مخصصة وتحليل تفصيلي للطلبات</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="overview"><section class="overview">
+        <div class="container">
+            <h2 class="section-title">ملخص الفوائد</h2>
+            <div class="row mt-5">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-item">
+                        <h5 style="color: #667eea;">
+                            <i class="fas fa-rocket"></i> إنتاجية أعلى
+                        </h5>
+                        <p>تحسينات وظيفية وبحث أسرع يوفر الوقت والجهد</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-item">
+                        <h5 style="color: #667eea;">
+                            <i class="fas fa-mobile-alt"></i> مرونة أكبر
+                        </h5>
+                        <p>إدارة كاملة من الهاتف مع تجربة محسّنة</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-item">
+                        <h5 style="color: #667eea;">
+                            <i class="fas fa-bar-chart"></i> تحليلات أفضل
+                        </h5>
+                        <p>تقارير شاملة وإحصائيات تفصيلية للقرارات الذكية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container" style="position: relative; z-index: 2;">
+            <h2 class="pricing-title">العرض الخاص للتحديث الشامل</h2>
+            <p class="pricing-subtitle">باقة واحدة شاملة بسعر مذهل</p>
+            
+            <div class="pricing-cards-container">
+                <!-- Original Price Card -->
+                <div class="pricing-card">
+                    <h3>القيمة الفعلية للعمل</h3>
+                    <div class="pricing-original">$1,500+</div>
+                    <div style="color: #999; font-size: 0.95rem; line-height: 1.8;">
+                        <p><strong style="color: #2d3748;">يتضمن:</strong></p>
+                        <ul class="pricing-features" style="margin-top: 15px;">
+                            <li>نقل لوحة الأدمن للموبايل</li>
+                            <li>إصلاحات نظام iOS الشاملة</li>
+                            <li>جميع التحسينات الوظيفية</li>
+                            <li>تحسينات الواجهة والتصميم</li>
+                            <li>نظام الإدارة والصلاحيات</li>
+                            <li>التقارير والإحصائيات المتقدمة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Special Offer Card -->
+                <div class="pricing-card featured">
+                    <h3>الباقة الخاصة</h3>
+                    <div class="pricing-value">$850</div>
+                    <div class="pricing-original">بدلاً من $1,500+</div>
+                    
+                    <div class="pricing-highlight">
+                        <strong> خصم خاص: توفير $650+</strong>
+                        
+                    </div>
+
+                    
+
+                    <ul class="pricing-features">
+                        <li>Admin Dashboard على الموبايل (هدية)</li>
+                        <li>رفع الصور للكاشير</li>
+                        <li>حقل مصدر البيع الإلزامي</li>
+                        <li>نظام تنبيهات الزبون الذكية</li>
+                        <li>البحث المتقدم الشامل</li>
+                        <li>جميع إصلاحات iOS والمشاكل العامة</li>
+                        <li>تحسينات الواجهة الكاملة</li>
+                        <li>صلاحية Store Manager</li>
+                        <li>تحسينات نظام الإرجاع</li>
+                        <li>التقارير والإحصائيات المتطورة</li>
+                    </ul>
+
+                    <!-- CTA and limited-time note removed per client request -->
+                </div>
+            </div>
+
+            <div class="pricing-offer-note">
+                <p><strong>📢 ملاحظة مهمة:</strong> قيمة العمل الفعلي تتجاوز $1,500 (بسبب نقل الأدمن وإصلاحات iOS المعقدة)</p>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 نظام المبيعات المتكامل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function(){
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+            if(mobileMenuBtn && mobileNav){
+                mobileMenuBtn.addEventListener('click', function(){
+                    mobileNav.classList.add('active');
+                });
+            }
+            if(mobileCloseBtn && mobileNav){
+                mobileCloseBtn.addEventListener('click', function(){
+                    mobileNav.classList.remove('active');
+                });
+            }
+            document.addEventListener('keydown', function(e){
+                if(e.key === 'Escape' && mobileNav && mobileNav.classList.contains('active')){
+                    mobileNav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

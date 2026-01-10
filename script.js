@@ -372,15 +372,15 @@ document.addEventListener('DOMContentLoaded', function() {
 function showModuleDetails(module) {
     const content = `
         <div class="modal-header">
-            <i class="${module.icon}" style="font-size: 2rem; color: #667eea; margin-left: 15px;"></i>
+            <i class="${module.icon}" style="font-size: 2rem; color: #667eea; margin-inline-start: 15px;"></i>
             <h2 style="color: #2d3748; margin-bottom: 10px;">${module.title}</h2>
             <p style="color: #718096; margin-bottom: 30px;">${module.description}</p>
         </div>
         <div class="modal-features">
             ${module.features.map(feature => `
-                <div class="modal-feature" style="padding: 20px; margin-bottom: 15px; background: #f7fafc; border-radius: 10px; border-right: 4px solid #667eea;">
+                <div class="modal-feature" style="padding: 20px; margin-bottom: 15px; background: #f7fafc; border-radius: 10px; border-inline-end: 4px solid #667eea;">
                     <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <i class="${feature.icon}" style="font-size: 1.2rem; color: #667eea; margin-left: 10px;"></i>
+                        <i class="${feature.icon}" style="font-size: 1.2rem; color: #667eea; margin-inline-start: 10px;"></i>
                         <h4 style="color: #2d3748; margin: 0;">${feature.title}</h4>
                     </div>
                     <p style="color: #4a5568; margin: 0; line-height: 1.6;">${feature.description}</p>
